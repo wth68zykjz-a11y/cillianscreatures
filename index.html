@@ -75,6 +75,14 @@
     .feature p { font-size: 0.85rem; opacity: 0.75; }
     .stay-tuned { text-align: center; padding: 1.5rem; opacity: 0.7; font-size: 0.9rem; }
     section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .gallery { text-align: center; }
+    .gallery h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .gallery p { opacity: 0.8; margin-bottom: 2rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .card { background: #163a47; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+    .card img { width: 100%; height: 220px; object-fit: cover; background: #0f2a33; }
+    .card h3 { padding: 1rem 1.2rem 0.3rem; font-size: 1.1rem; }
+    .card p { padding: 0 1.2rem 1.2rem; opacity: 0.8; font-size: 0.9rem; }
     .contact-form { max-width: 600px; margin: 0 auto; background: #163a47; padding: 2rem; border-radius: 12px; }
     .contact-form h2 { text-align: center; margin-bottom: 0.5rem; }
     .contact-form p { text-align: center; opacity: 0.8; margin-bottom: 1.5rem; }
@@ -121,8 +129,7 @@
       <p>Handcrafted 3D printed creatures, designed for collectors, gamers, and creature lovers.</p>
       <a href="#contact" class="btn">JOIN THE WAITLIST &rarr;</a>
     </div>
-    <!-- Replace this placeholder with your dragon image -->
-    <img class="hero-image" src="https://placehold.co/600x500/1a3a4a/white?text=Dragon+Model" alt="3D printed dragon">
+    <img class="hero-image" src="https://placehold.co/800x400/1a3a4a/white?text=Creature+Group" alt="Cillian's Creatures group">
   </div>
 
   <div class="features">
@@ -148,6 +155,33 @@
     </div>
   </div>
   <p class="stay-tuned">Stay tuned. Something awesome is on the way. ♡</p>
+
+  <section id="gallery" class="gallery">
+    <h2>Meet the Creatures</h2>
+    <p>A first look at the collection — more on the way.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://placehold.co/400x300/1a3a4a/white?text=Green+Dragon" alt="Green and gold dragon">
+        <h3>Green & Gold Dragon</h3>
+        <p>Cute little dragon with gold horns, wings, and chest accents.</p>
+      </div>
+      <div class="card">
+        <img src="https://placehold.co/400x300/1a3a4a/white?text=Black+Lab" alt="Black Lab puppy">
+        <h3>Black Lab Puppy</h3>
+        <p>Friendly black Labrador with a happy expression and soft features.</p>
+      </div>
+      <div class="card">
+        <img src="https://placehold.co/400x300/1a3a4a/white?text=Silly+Alien" alt="Silly alien">
+        <h3>Silly Alien</h3>
+        <p>Goofy blue alien with big eyes, gold antenna tips, and a big smile.</p>
+      </div>
+      <div class="card">
+        <img src="https://placehold.co/400x300/1a3a4a/white?text=Red+Gecko" alt="Red gecko">
+        <h3>Red Gecko</h3>
+        <p>Bright red gecko with gold toe and head accents. Ready for adventure.</p>
+      </div>
+    </div>
+  </section>
 
   <section id="contact">
     <div class="contact-form">
