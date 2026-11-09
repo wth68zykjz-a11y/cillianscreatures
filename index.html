@@ -6,109 +6,153 @@
   <title>Cillian's Creatures | 3D Printed Models</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #222; background: #f8f6f2; }
-    header { background: #1a3a4a; color: white; padding: 1.5rem 2rem; text-align: center; }
-    header h1 { font-size: 2.2rem; margin-bottom: 0.25rem; }
-    header p { opacity: 0.85; }
-    nav { background: #2c5f6e; padding: 0.75rem; text-align: center; }
-    nav a { color: white; text-decoration: none; margin: 0 1rem; font-weight: 500; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #e8e8e8; background: #0f2a33; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; background: #0f2a33; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.3rem; }
+    .logo span { font-size: 0.75rem; opacity: 0.7; font-weight: 400; letter-spacing: 0.1em; }
+    nav a { color: #e8e8e8; text-decoration: none; margin: 0 1rem; font-size: 0.95rem; }
     nav a:hover { text-decoration: underline; }
-    .hero { 
-      background: linear-gradient(135deg, #1a3a4a 0%, #3d7a8c 100%); 
-      color: white; 
-      text-align: center; 
-      padding: 4rem 2rem; 
+    .hero {
       position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      background: #0f2a33;
       overflow: hidden;
     }
-    .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; opacity: 0.95; }
-    .btn { display: inline-block; background: #e8a838; color: #1a3a4a; padding: 0.8rem 1.8rem; text-decoration: none; border-radius: 6px; font-weight: 600; }
-    .btn:hover { background: #f0b94d; }
+    .hero-content { max-width: 560px; z-index: 2; }
+    .hero h1 { font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 1rem; }
+    .hero p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; max-width: 480px; }
+    .btn {
+      display: inline-block;
+      border: 2px solid white;
+      color: white;
+      padding: 0.75rem 1.6rem;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .btn:hover { background: white; color: #0f2a33; }
     .coming-soon {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-12deg);
-      font-size: clamp(3.5rem, 12vw, 8rem);
+      transform: translate(-50%, -50%) rotate(-18deg);
+      font-size: clamp(4rem, 14vw, 9rem);
       font-weight: 900;
-      color: rgba(255, 255, 255, 0.18);
-      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.12);
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       pointer-events: none;
       white-space: nowrap;
       user-select: none;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      z-index: 1;
     }
+    .hero-image {
+      position: absolute;
+      right: 2rem;
+      bottom: 0;
+      max-height: 90%;
+      width: auto;
+      max-width: 45%;
+      opacity: 0.95;
+      z-index: 2;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .feature { text-align: center; }
+    .feature .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .feature h3 { font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .feature p { font-size: 0.85rem; opacity: 0.75; }
+    .stay-tuned { text-align: center; padding: 1.5rem; opacity: 0.7; font-size: 0.9rem; }
     section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    .card .placeholder { height: 180px; background: #e0e7ea; display: flex; align-items: center; justify-content: center; color: #5a7a88; font-size: 0.9rem; }
-    .card h3 { padding: 1rem 1.2rem 0.5rem; color: #1a3a4a; }
-    .card p { padding: 0 1.2rem 1.2rem; color: #555; }
-    .contact-form { max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-    .contact-form h2 { text-align: center; color: #1a3a4a; margin-bottom: 0.5rem; }
-    .contact-form p { text-align: center; color: #666; margin-bottom: 1.5rem; }
+    .contact-form { max-width: 600px; margin: 0 auto; background: #163a47; padding: 2rem; border-radius: 12px; }
+    .contact-form h2 { text-align: center; margin-bottom: 0.5rem; }
+    .contact-form p { text-align: center; opacity: 0.8; margin-bottom: 1.5rem; }
     .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; color: #333; }
-    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; font-family: inherit; }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #2c5f6e; box-shadow: 0 0 0 3px rgba(44,95,110,0.15); }
-    .form-group textarea { min-height: 120px; resize: vertical; }
-    .submit-btn { background: #1a3a4a; color: white; border: none; padding: 0.9rem 1.5rem; font-size: 1rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; }
-    .submit-btn:hover { background: #2c5f6e; }
+    .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.75rem; border: 1px solid #2c5f6e; border-radius: 6px;
+      background: #0f2a33; color: white; font-size: 1rem; font-family: inherit;
+    }
+    .submit-btn { background: #e8a838; color: #0f2a33; border: none; padding: 0.9rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; }
     .form-message { text-align: center; margin-top: 1rem; padding: 0.75rem; border-radius: 6px; display: none; }
-    .form-message.success { background: #e8f5e9; color: #2e7d32; display: block; }
-    .form-message.error { background: #ffebee; color: #c62828; display: block; }
+    .form-message.success { background: #1b5e20; color: white; display: block; }
+    .form-message.error { background: #b71c1c; color: white; display: block; }
     .honeypot { position: absolute; left: -9999px; }
-    footer { background: #1a3a4a; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; }
+    @media (max-width: 800px) {
+      .hero-image { position: relative; max-width: 70%; margin: 2rem auto 0; right: auto; bottom: auto; display: block; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-content { max-width: 100%; }
+      nav { display: none; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Cillian's Creatures</h1>
-    <p>Custom 3D Printed Models & Collectibles</p>
-  </header>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="hero">
-    <div class="coming-soon">Coming Soon</div>
-    <h2>Unique Creatures, Printed Just for You</h2>
-    <p>High-quality 3D printed models, miniatures, and custom designs. From fantasy beasts to practical prints.</p>
-    <a href="#gallery" class="btn">Browse the Gallery</a>
-  </div>
-  <section id="gallery">
-    <h2 style="text-align:center; color:#1a3a4a; margin-bottom:0.5rem;">Featured Prints</h2>
-    <p style="text-align:center; color:#666;">A selection of recent work — more coming soon.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="placeholder">Model Preview</div>
-        <h3>Fantasy Dragon</h3>
-        <p>Detailed articulated dragon printed in multi-color PETG.</p>
-      </div>
-      <div class="card">
-        <div class="placeholder">Model Preview</div>
-        <h3>Christmas Tree Stand</h3>
-        <p>Sturdy 10-inch base designed for a 3-foot artificial tree.</p>
-      </div>
-      <div class="card">
-        <div class="placeholder">Model Preview</div>
-        <h3>Custom Creature</h3>
-        <p>Your design, our print. Contact for commissions.</p>
-      </div>
+    <div class="logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 4C12 4 8 10 8 16c0 4 2 7 5 9l-2 6h14l-2-6c3-2 5-5 5-9 0-6-4-12-10-12z" fill="white" opacity="0.9"/><path d="M14 14c1-2 4-3 6-1" stroke="#0f2a33" stroke-width="1.5"/></svg>
+      Cillian's Creatures<br><span>3D PRINT SHOP</span>
     </div>
-  </section>
-  <section id="about">
-    <h2 style="text-align:center; color:#1a3a4a;">About Cillian's Creatures</h2>
-    <p style="max-width:700px; margin:1rem auto; text-align:center;">We specialize in high-quality 3D printed models, from fun collectibles to practical household items. Every print is carefully designed or customized and produced on reliable multi-nozzle printers.</p>
-  </section>
+    <nav>
+      <a href="#">SHOP</a>
+      <a href="#gallery">CREATURES</a>
+      <a href="#">CUSTOM ORDERS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">FAQ</a>
+    </nav>
+    <div>🛒</div>
+  </header>
+
+  <div class="hero">
+    <div class="coming-soon">COMING SOON</div>
+    <div class="hero-content">
+      <h1>Unique Creatures,<br>Printed Just for You.</h1>
+      <p>Handcrafted 3D printed creatures, designed for collectors, gamers, and creature lovers.</p>
+      <a href="#contact" class="btn">JOIN THE WAITLIST &rarr;</a>
+    </div>
+    <!-- Replace this placeholder with your dragon image -->
+    <img class="hero-image" src="https://placehold.co/600x500/1a3a4a/white?text=Dragon+Model" alt="3D printed dragon">
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="icon">📦</div>
+      <h3>HIGH QUALITY 3D PRINTS</h3>
+      <p>Detail-oriented. Built to impress.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🌿</div>
+      <h3>ECO-FRIENDLY MATERIALS</h3>
+      <p>Safe, durable, and planet conscious.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🐉</div>
+      <h3>UNIQUE & ORIGINAL DESIGNS</h3>
+      <p>Creatures you won't find anywhere else.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">✏️</div>
+      <h3>CUSTOM ORDERS WELCOME</h3>
+      <p>Bring your creature ideas to life.</p>
+    </div>
+  </div>
+  <p class="stay-tuned">Stay tuned. Something awesome is on the way. ♡</p>
+
   <section id="contact">
     <div class="contact-form">
-      <h2>Contact Us</h2>
-      <p>Have a custom print idea or question? Send us a message.</p>
+      <h2>Join the Waitlist</h2>
+      <p>Be the first to know when the shop opens.</p>
       <form id="contactForm" action="contact.php" method="post">
         <div class="honeypot">
           <label for="companyWebsite">Company website</label>
@@ -125,25 +169,25 @@
         <div class="form-group">
           <label for="subject">Subject</label>
           <select id="subject" name="subject">
-            <option value="general">General Inquiry</option>
+            <option value="waitlist">Waitlist</option>
             <option value="custom">Custom Print Request</option>
-            <option value="order">Order Question</option>
-            <option value="other">Other</option>
+            <option value="general">General Inquiry</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message"></textarea>
         </div>
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" class="submit-btn">Join Waitlist</button>
         <div id="formMessage" class="form-message"></div>
       </form>
     </div>
   </section>
+
   <footer>
     <p>&copy; 2026 Cillian's Creatures &bull; cillianscreatures.com</p>
-    <p style="margin-top:0.5rem; opacity:0.7; font-size:0.9rem;">Mockup page — ready for Hostinger deployment</p>
   </footer>
+
   <script>
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -152,15 +196,11 @@
       const btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending...';
-
       try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form)
-        });
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
         const data = await res.json();
         if (data.ok) {
-          msgEl.textContent = 'Thanks! Your message has been sent.';
+          msgEl.textContent = 'Thanks! You\'re on the list.';
           msgEl.className = 'form-message success';
           form.reset();
         } else {
@@ -172,7 +212,7 @@
         msgEl.className = 'form-message error';
       }
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = 'Join Waitlist';
     });
   </script>
 </body>
