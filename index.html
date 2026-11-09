@@ -56,6 +56,10 @@
     .form-group textarea { min-height: 120px; resize: vertical; }
     .submit-btn { background: #1a3a4a; color: white; border: none; padding: 0.9rem 1.5rem; font-size: 1rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; }
     .submit-btn:hover { background: #2c5f6e; }
+    .form-message { text-align: center; margin-top: 1rem; padding: 0.75rem; border-radius: 6px; display: none; }
+    .form-message.success { background: #e8f5e9; color: #2e7d32; display: block; }
+    .form-message.error { background: #ffebee; color: #c62828; display: block; }
+    .honeypot { position: absolute; left: -9999px; }
     footer { background: #1a3a4a; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
   </style>
 </head>
@@ -105,7 +109,11 @@
     <div class="contact-form">
       <h2>Contact Us</h2>
       <p>Have a custom print idea or question? Send us a message.</p>
-      <form action="#" method="post">
+      <form id="contactForm" action="contact.php" method="post">
+        <div class="honeypot">
+          <label for="companyWebsite">Company website</label>
+          <input type="text" id="companyWebsite" name="companyWebsite" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -128,6 +136,7 @@
           <textarea id="message" name="message" required></textarea>
         </div>
         <button type="submit" class="submit-btn">Send Message</button>
+        <div id="formMessage" class="form-message"></div>
       </form>
     </div>
   </section>
@@ -135,5 +144,36 @@
     <p>&copy; 2026 Cillian's Creatures &bull; cillianscreatures.com</p>
     <p style="margin-top:0.5rem; opacity:0.7; font-size:0.9rem;">Mockup page — ready for Hostinger deployment</p>
   </footer>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = this;
+      const msgEl = document.getElementById('formMessage');
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (data.ok) {
+          msgEl.textContent = 'Thanks! Your message has been sent.';
+          msgEl.className = 'form-message success';
+          form.reset();
+        } else {
+          msgEl.textContent = data.error || 'Something went wrong.';
+          msgEl.className = 'form-message error';
+        }
+      } catch (err) {
+        msgEl.textContent = 'Could not send. Please try again.';
+        msgEl.className = 'form-message error';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    });
+  </script>
 </body>
 </html>
