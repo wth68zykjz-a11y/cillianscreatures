@@ -6,35 +6,44 @@
   <title>Cillian's Creatures | 3D Printed Models</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #e8e8e8; background: #0f2a33; }
-    header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; background: #0f2a33; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #e8e8e8; background: #0a1f28; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; background: rgba(10,31,40,0.92); border-bottom: 1px solid rgba(232,168,56,0.15); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
     .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.3rem; }
     .logo span { font-size: 0.75rem; opacity: 0.7; font-weight: 400; letter-spacing: 0.1em; }
     nav a { color: #e8e8e8; text-decoration: none; margin: 0 1rem; font-size: 0.95rem; }
-    nav a:hover { text-decoration: underline; }
+    nav a:hover { color: #e8a838; }
     .hero {
       position: relative;
-      min-height: 70vh;
+      min-height: 85vh;
       display: flex;
       align-items: center;
       padding: 4rem 2rem;
-      background: #0f2a33;
+      background: url('IMG_8324.jpeg') center right / cover no-repeat;
       overflow: hidden;
     }
-    .hero-content { max-width: 560px; z-index: 2; }
-    .hero h1 { font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 1rem; }
-    .hero p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; max-width: 480px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(10,31,40,0.92) 0%, rgba(10,31,40,0.75) 40%, rgba(10,31,40,0.25) 70%, rgba(10,31,40,0.1) 100%);
+      z-index: 1;
+    }
+    .hero-content { max-width: 560px; z-index: 2; position: relative; }
+    .hero h1 { font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 1rem; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+    .hero p { font-size: 1.15rem; opacity: 0.95; margin-bottom: 2rem; max-width: 480px; text-shadow: 0 1px 6px rgba(0,0,0,0.3); }
     .btn {
       display: inline-block;
-      border: 2px solid white;
-      color: white;
+      border: 2px solid #e8a838;
+      color: #e8a838;
       padding: 0.75rem 1.6rem;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
       letter-spacing: 0.05em;
+      background: rgba(10,31,40,0.6);
+      transition: all 0.2s;
     }
-    .btn:hover { background: white; color: #0f2a33; }
+    .btn:hover { background: #e8a838; color: #0a1f28; }
     .coming-soon {
       position: absolute;
       top: 50%;
@@ -42,7 +51,7 @@
       transform: translate(-50%, -50%) rotate(-18deg);
       font-size: clamp(4rem, 14vw, 9rem);
       font-weight: 900;
-      color: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.08);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       pointer-events: none;
@@ -50,56 +59,49 @@
       user-select: none;
       z-index: 1;
     }
-    .hero-image {
-      position: absolute;
-      right: 2rem;
-      bottom: 0;
-      max-height: 90%;
-      width: auto;
-      max-width: 45%;
-      opacity: 0.95;
-      z-index: 2;
-    }
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
       padding: 2.5rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(232,168,56,0.12);
       max-width: 1100px;
       margin: 0 auto;
     }
     .feature { text-align: center; }
     .feature .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .feature h3 { font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .feature h3 { font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 0.3rem; color: #e8a838; }
     .feature p { font-size: 0.85rem; opacity: 0.75; }
     .stay-tuned { text-align: center; padding: 1.5rem; opacity: 0.7; font-size: 0.9rem; }
     section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
     .gallery { text-align: center; }
-    .gallery h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .gallery h2 { font-size: 2rem; margin-bottom: 0.5rem; color: #e8a838; }
     .gallery p { opacity: 0.8; margin-bottom: 2rem; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .card { background: #163a47; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-    .card img { width: 100%; height: 220px; object-fit: cover; background: #0f2a33; }
-    .card h3 { padding: 1rem 1.2rem 0.3rem; font-size: 1.1rem; }
+    .card { background: #122a35; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.25); border: 1px solid rgba(232,168,56,0.08); }
+    .card img { width: 100%; height: 220px; object-fit: cover; background: #0a1f28; }
+    .card h3 { padding: 1rem 1.2rem 0.3rem; font-size: 1.1rem; color: #e8a838; }
     .card p { padding: 0 1.2rem 1.2rem; opacity: 0.8; font-size: 0.9rem; }
-    .contact-form { max-width: 600px; margin: 0 auto; background: #163a47; padding: 2rem; border-radius: 12px; }
-    .contact-form h2 { text-align: center; margin-bottom: 0.5rem; }
+    .contact-form { max-width: 600px; margin: 0 auto; background: #122a35; padding: 2rem; border-radius: 12px; border: 1px solid rgba(232,168,56,0.12); }
+    .contact-form h2 { text-align: center; margin-bottom: 0.5rem; color: #e8a838; }
     .contact-form p { text-align: center; opacity: 0.8; margin-bottom: 1.5rem; }
     .form-group { margin-bottom: 1.2rem; }
     .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; }
     .form-group input, .form-group textarea, .form-group select {
       width: 100%; padding: 0.75rem; border: 1px solid #2c5f6e; border-radius: 6px;
-      background: #0f2a33; color: white; font-size: 1rem; font-family: inherit;
+      background: #0a1f28; color: white; font-size: 1rem; font-family: inherit;
     }
-    .submit-btn { background: #e8a838; color: #0f2a33; border: none; padding: 0.9rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #e8a838; }
+    .submit-btn { background: #e8a838; color: #0a1f28; border: none; padding: 0.9rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; }
+    .submit-btn:hover { background: #f0b94d; }
     .form-message { text-align: center; margin-top: 1rem; padding: 0.75rem; border-radius: 6px; display: none; }
     .form-message.success { background: #1b5e20; color: white; display: block; }
     .form-message.error { background: #b71c1c; color: white; display: block; }
     .honeypot { position: absolute; left: -9999px; }
-    footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; }
+    footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid rgba(232,168,56,0.1); }
     @media (max-width: 800px) {
-      .hero-image { position: relative; max-width: 70%; margin: 2rem auto 0; right: auto; bottom: auto; display: block; }
+      .hero { background-position: center; min-height: 70vh; }
+      .hero::before { background: linear-gradient(180deg, rgba(10,31,40,0.85) 0%, rgba(10,31,40,0.6) 50%, rgba(10,31,40,0.3) 100%); }
       .hero { flex-direction: column; text-align: center; }
       .hero-content { max-width: 100%; }
       nav { display: none; }
@@ -109,7 +111,7 @@
 <body>
   <header>
     <div class="logo">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 4C12 4 8 10 8 16c0 4 2 7 5 9l-2 6h14l-2-6c3-2 5-5 5-9 0-6-4-12-10-12z" fill="white" opacity="0.9"/><path d="M14 14c1-2 4-3 6-1" stroke="#0f2a33" stroke-width="1.5"/></svg>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 4C12 4 8 10 8 16c0 4 2 7 5 9l-2 6h14l-2-6c3-2 5-5 5-9 0-6-4-12-10-12z" fill="#e8a838" opacity="0.95"/><path d="M14 14c1-2 4-3 6-1" stroke="#0a1f28" stroke-width="1.5"/></svg>
       Cillian's Creatures<br><span>3D PRINT SHOP</span>
     </div>
     <nav>
@@ -129,7 +131,6 @@
       <p>Handcrafted 3D printed creatures, designed for collectors, gamers, and creature lovers.</p>
       <a href="#contact" class="btn">JOIN THE WAITLIST &rarr;</a>
     </div>
-    <img class="hero-image" src="IMG_8324.jpeg" alt="Cillian's Creatures group">
   </div>
 
   <div class="features">
